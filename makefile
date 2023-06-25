@@ -8,6 +8,12 @@ run-server:
 run-client:
 	go run ./app/cmd/client/main.go
 
+run-nginx:
+	curl \
+    --header "Content-Type: application/json" \
+    --data '{"name": "Jane"}' \
+    http://0.0.0.0:80/greet.v1.GreetService/Greet
+
 # curl-grpc:
 # 	bashgrpcurl \
 #     -protoset <(buf build -o -) -plaintext \
