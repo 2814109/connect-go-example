@@ -1,12 +1,12 @@
 run-server:
-	go run ./cmd/server/main.go
-	 curl \
+	go run ./app/cmd/server/main.go
+	curl \
     --header "Content-Type: application/json" \
     --data '{"name": "Jane"}' \
-    http://localhost:8080/greet.v1.GreetService/Greet
+    http://0.0.0.0:8888/greet.v1.GreetService/Greet
 
 run-client:
-	go run ./cmd/client/main.go
+	go run ./app/cmd/client/main.go
 
 # curl-grpc:
 # 	bashgrpcurl \

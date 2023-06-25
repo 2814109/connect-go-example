@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: 
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    volumes:
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - "app"
+  app:
+    build: 
+      context: .
+      dockerfile: ./docker/golang/Dockerfile
+    volumes: 
+      - ./app:/go/src/app
+    tty: true 
+    ports:
+      - ${APP_PORT}:8888
+    networks:
+      - connect-go-network
+  postgres:
+    build:
+      context: .
+      dockerfile: ./docker/postgres/Dockerfile
+    environment:
+      - POSTGRES_DB=${PSQL_DBNAME}
+      - POSTGRES_USER=${PSQL_USER}
+      - POSTGRES_PASSWORD=${PSQL_PASS}
+    volumes:
+      - db-store:/var/lib/postgresql/data
+      - ./postgres/database/init:/docker-entrypoint-initdb.d 
+    ports:
+      - ${PSQL_PORT}:15432
+    networks:
+      - connect-go-network
+volumes:
+  db-store:
+networks:
+  connect-go-network:
+    external: true
