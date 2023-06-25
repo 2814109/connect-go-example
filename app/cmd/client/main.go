@@ -14,7 +14,7 @@ import (
 func main() {
 	client := greetv1connect.NewGreetServiceClient(
 		http.DefaultClient,
-		":8888",
+		"http://0.0.0.0:8888",
 	)
 	res, err := client.Greet(
 		context.Background(),

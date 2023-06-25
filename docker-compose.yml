@@ -11,6 +11,8 @@ services:
       - "80:80"
     depends_on:
       - "app"
+    networks:
+    - connect-go-network
   app:
     build: 
       context: .
