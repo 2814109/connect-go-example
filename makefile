@@ -1,12 +1,12 @@
-run-server:
-	go run ./app/cmd/server/main.go
-	curl \
-    --header "Content-Type: application/json" \
-    --data '{"name": "Jane"}' \
-    http://0.0.0.0:8888/greet.v1.GreetService/Greet
+# run-server:
+# 	go run ./app/cmd/server/main.go
+# 	curl \
+#     --header "Content-Type: application/json" \
+#     --data '{"name": "Jane"}' \
+#     http://0.0.0.0:8888/greet.v1.GreetService/Greet
 
-run-client:
-	go run ./app/cmd/client/main.go
+# run-client:
+# 	go run ./app/cmd/client/main.go
 
 run-nginx:
 	curl \
